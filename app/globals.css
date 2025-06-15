@@ -1,0 +1,51 @@
+/* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Anton&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+  /* Fluid typography */
+  --text-xs: clamp(0.7rem, 0.85vw + 0.5rem, 0.8rem);
+  --text-sm: clamp(0.8rem, 0.9vw + 0.6rem, 0.9rem);
+  --text-base: clamp(1rem, 1vw + 0.8rem, 1.1rem);
+  --text-lg: clamp(1.1rem, 1.1vw + 0.9rem, 1.3rem);
+  --text-xl: clamp(1.3rem, 1.3vw + 1rem, 1.6rem);
+  --text-2xl: clamp(1.6rem, 1.8vw + 1.2rem, 2rem);
+  --text-3xl: clamp(2rem, 2.5vw + 1.3rem, 3rem);
+  --text-4xl: clamp(2.5rem, 3.5vw + 1.5rem, 4rem);
+  
+  /* Line heights */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+}
+
+body {
+  font-family: 'Aclonica','Anton', sans-serif;
+}
+
+
+/* Headlines */
+h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* Paragraphs */
+p {
+  font-family: var(--font-aclonica), sans-serif;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  letter-spacing: 0.01em;
+}
