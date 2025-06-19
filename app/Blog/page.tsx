@@ -5,15 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Marquee from 'react-fast-marquee';
 
-const BlogSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+const newsItems = [
+  { id: 1, title: "A sculpture of the Laocoön group was vandalized...", img: "/1.webp" },
+  { id: 2, title: "Mysterious artifact discovered in the desert...", img: "/2.jpg" },
+  { id: 3, title: "Ancient city ruins found beneath the ocean...", img: "/3.jpg" },
+  { id: 4, title: "Scientists uncover a new dinosaur species...", img: "/4.jpg" },
+];
 
-  const newsItems = [
-    { title: "A sculpture of the Laocoön group was vandalized...", img: "/1.webp" },
-    { title: "Mysterious artifact discovered in the desert...", img: "/2.jpg" },
-    { title: "Ancient city ruins found beneath the ocean...", img: "/3.jpg" },
-    { title: "Scientists uncover a new dinosaur species...", img: "/4.jpg" },
-  ];
+export default function BlogPage() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div className="bg-gray-100 text-black font-sans h-screen md:overflow-hidden overflow-y-auto">
@@ -31,14 +31,11 @@ const BlogSection = () => {
         {/* Left Column */}
         <div className="space-y-2 col-span-1">
           <h5 className="text-xl font-bold">TODAY&apos;S NEWS</h5>
-          <h6 className="text-lg font-semibold">
-            60 Awesome Classic Cars Found Rotting in a Barn Go Up for Auction
-          </h6>
-          <p className="text-xs text-gray-700 space-x-1">
-            <span className="font-bold">- Categories</span>
-            <span className="text-gray-600">• By Jenny Preston • 22 May 2022 • 17 Shares</span>
+          <h6 className="text-lg font-semibold">60 Classic Cars Found in a Barn Go Up for Auction</h6>
+          <p className="text-xs text-gray-700">
+            <span className="font-bold">- Categories</span> • By Jenny Preston • 22 May 2022
           </p>
-          <p className="text-sm leading-tight text-gray-800">
+          <p className="text-sm text-gray-800">
             <span className="font-bold">F</span>ortunately for those who want to see these cars...
           </p>
           <div className="relative h-40 w-full">
@@ -56,9 +53,9 @@ const BlogSection = () => {
           <h3 className="font-bold text-md mb-5">More News</h3>
           <div className="space-y-2">
             {newsItems.map((news, index) => (
-              <Link href={`/BlogRead/${index + 1}`} key={index}>
+              <Link href={`/BlogRead/${news.id}`} key={index}>
                 <div
-                  className="relative flex justify-between items-start pb-2 hover:bg-gray-200 cursor-pointer transition-all duration-300"
+                  className="flex justify-between items-start pb-2 hover:bg-gray-200 cursor-pointer transition-all duration-300"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -90,7 +87,7 @@ const BlogSection = () => {
           <div className="relative w-full h-100 border-2 border-black shadow-lg">
             <Image
               src={hoveredIndex !== null ? newsItems[hoveredIndex].img : newsItems[0].img}
-              alt="Hovered news image"
+              alt="Hovered image"
               fill
               className="object-cover"
             />
@@ -106,6 +103,4 @@ const BlogSection = () => {
       </div>
     </div>
   );
-};
-
-export default BlogSection;
+}
