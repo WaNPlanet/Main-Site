@@ -1,53 +1,41 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import Marquee from "react-fast-marquee";
-
-interface Comment {
-  id: string;
-  text: string;
-  replies: Comment[];
-  voiceNote?: string | null;
-  image?: string | null;
-  parentId?: string | null;
-}
 
 const blogPosts = [
-  { id: '1', title: 'A sculpture of the Laocoön group was vandalized...', content: '<p>This is the full article about Laocoön.</p>' },
-  { id: '2', title: 'Ancient city ruins found beneath the ocean...', content: '<p>Details about ancient ruins.</p>' },
+  {
+    id: '1',
+    title: 'A sculpture of the Laocoön group was vandalized...',
+    content: `<p>This is the full article for post 1. More to come...</p>`
+  },
+  {
+    id: '2',
+    title: 'Ancient city ruins found beneath the ocean...',
+    content: `<p>This is the full article for post 2. More details to follow...</p>`
+  }
 ];
 
-export default function BlogPage() {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
-      <ul className="space-y-2">
-        {blogPosts.map((post) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.id}`} className="text-blue-600 hover:underline">
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+// Function to get post data
+function getBlogPostById(id: string) {
+  return blogPosts.find((post) => post.id === id) || {
+    title: "Post not found",
+    content: "<p>We couldn’t find the content you’re looking for.</p>"
+  };
 }
 
-export function BlogReadPage({ params }: { params: { id: string } }) {
-  const post = blogPosts.find(p => p.id === params.id);
-
-  if (!post) return <div className="p-6 text-red-600">Post not found</div>;
+export default function BlogReadPage({ params }: { params: { id: string } }) {
+  const post = getBlogPostById(params.id);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      <Link href="/blog" className="text-blue-600 hover:underline block mt-6">
+    <main className="max-w-3xl mx-auto px-6 py-10 text-gray-800">
+      <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+      <div
+        className="prose prose-gray max-w-none"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+      <Link href="/blog" className="mt-6 inline-block text-blue-600 hover:underline">
         ← Back to Blog
       </Link>
-    </div>
+    </main>
   );
 }
