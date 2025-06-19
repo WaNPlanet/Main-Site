@@ -126,7 +126,7 @@
 //       {/* Breaking News - Fixed at bottom */}
 //       <div className="absolute bottom-0 left-0 right-0 bg-gray-300 p-1 text-center text-xs">
 //         <Marquee speed={40}>
-//           🚨 Breaking News: Major tech breakthrough • Stock market sees record highs • New space mission announced
+//            Breaking News: Major tech breakthrough • Stock market sees record highs • New space mission announced
 //         </Marquee>
 //       </div>
 //     </div>
